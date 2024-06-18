@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctx6owfomwvcv"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_l8ud1"]
+
+[sub_resource type="Environment" id="Environment_ltlt3"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_j370j"]
+height = 2.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0gikd"]
+height = 2.5
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5, 6, 0)
+axis_lock_linear_y = true
+script = ExtResource("1_l8ud1")
+
+[node name="NeckNode" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, -2.75, 0)
+
+[node name="Camera3D" type="Camera3D" parent="NeckNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, 0)
+environment = SubResource("Environment_ltlt3")
+fov = 90.0
+
+[node name="FlashlightNode" type="Node3D" parent="NeckNode/Camera3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.99412e-09, -1.75, -5.5)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="NeckNode/Camera3D/FlashlightNode"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+light_energy = 100.0
+light_size = 5.0
+distance_fade_enabled = true
+distance_fade_begin = 10.0
+distance_fade_length = 1.0
+spot_range = 101.594
+spot_attenuation = 0.784584
+spot_angle_attenuation = 0.965936
+
+[node name="PlayerBody" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.5, 0, 0, 0, 5.5, 0, 0, 0, 5.5, 0, 1.5, 0)
+mesh = SubResource("CapsuleMesh_j370j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(5.5, 0, 0, 0, 5.5, 0, 0, 0, 5.5, 0, 1.5, 0)
+shape = SubResource("CapsuleShape3D_0gikd")
+
+[node name="Player" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(5.5, 0, 0, 0, 5.5, 0, 0, 0, 5.5, 0, 1.5, 0)
+shape = SubResource("CapsuleShape3D_0gikd")

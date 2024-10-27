@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=3 uid="uid://ctx6owfomwvcv"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_l8ud1"]
+[ext_resource type="AudioStream" uid="uid://cw4e30dlfast8" path="res://addons/kenney impact sounds/impact_plate_heavy_004.ogg" id="2_ny052"]
+
+[sub_resource type="Environment" id="Environment_ltlt3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_arswr"]
+size = Vector3(2, 1, 10)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_j370j"]
+height = 2.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0gikd"]
+height = 2.5
+
+[sub_resource type="Animation" id="Animation_1lixd"]
+resource_name = "Player_Walking_Animation"
+length = 0.65
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_play_footstep_audio"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ufwfj"]
+_data = {
+"Player_Walking_Animation": SubResource("Animation_1lixd")
+}
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5, 6, 0)
+axis_lock_linear_y = true
+script = ExtResource("1_l8ud1")
+
+[node name="NeckNode" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.5, -2.75, 0)
+
+[node name="Camera3D" type="Camera3D" parent="NeckNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, 0)
+environment = SubResource("Environment_ltlt3")
+fov = 90.0
+
+[node name="FlashlightNode" type="Node3D" parent="NeckNode/Camera3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.16563e-07, -1.75, -0.5)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="NeckNode/Camera3D/FlashlightNode"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+light_energy = 16.0
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 16.0
+light_size = 5.0
+light_specular = 0.0
+shadow_enabled = true
+shadow_bias = 10.0
+shadow_normal_bias = 10.0
+shadow_transmittance_bias = 16.0
+distance_fade_enabled = true
+spot_range = 101.594
+spot_attenuation = 0.239878
+spot_angle = 63.18
+spot_angle_attenuation = 0.463412
+
+[node name="Area3D" type="Area3D" parent="NeckNode/Camera3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NeckNode/Camera3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.18557e-07, 0, -5)
+shape = SubResource("BoxShape3D_arswr")
+
+[node name="PlayerBody" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.5, 0, 0, 0, 5.5, 0, 0, 0, 5.5, 0, 1.5, 0)
+mesh = SubResource("CapsuleMesh_j370j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(5.5, 0, 0, 0, 5.5, 0, 0, 0, 5.5, 0, 1.5, 0)
+shape = SubResource("CapsuleShape3D_0gikd")
+
+[node name="Player" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(5.5, 0, 0, 0, 5.5, 0, 0, 0, 5.5, 0, 1.5, 0)
+shape = SubResource("CapsuleShape3D_0gikd")
+
+[node name="PlayerFootstepMetal" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_ny052")
+volume_db = -5.027
+
+[node name="PlayerAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ufwfj")
+}

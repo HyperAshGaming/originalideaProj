@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxjfsfj34rrr0"]
+
+[sub_resource type="GDScript" id="GDScript_ig1o8"]
+resource_name = "MainMenuScript"
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+func _instantiateself():
+	var instance = (load(\"res://MainMenu.tscn\") as PackedScene).instantiate()
+	
+func _on_start_button_pressed():
+	get_tree().change_scene_to_file(\"res://Main.tscn\")
+"
+
+[node name="MainMenu" type="Control" groups=["MainMenuGroup"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_ig1o8")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1150.0
+offset_bottom = 648.0
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 402.0
+offset_top = 212.0
+offset_right = 735.0
+offset_bottom = 396.0
+text = "BUTTON"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

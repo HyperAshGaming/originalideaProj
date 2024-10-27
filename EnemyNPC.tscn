@@ -1,0 +1,357 @@
+[gd_scene load_steps=19 format=3 uid="uid://b7thifr7eo2mq"]
+
+[ext_resource type="Script" path="res://EnemyMovement.gd" id="1_8qltm"]
+[ext_resource type="Script" path="res://EnemyNPCScript.gd" id="1_tmms6"]
+[ext_resource type="AudioStream" uid="uid://cj3xc1pkvje16" path="res://addons/kenney sci-fi sounds/low_frequency_explosion_001.ogg" id="3_qxgc5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mo70g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ws1a8"]
+albedo_color = Color(0, 0, 0, 1)
+roughness_texture_channel = 4
+rim_enabled = true
+rim_tint = 0.0
+clearcoat_enabled = true
+clearcoat = 0.0
+clearcoat_roughness = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_2nejy"]
+material = SubResource("StandardMaterial3D_ws1a8")
+radius = 0.01
+height = 0.02
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_resmp"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_iwsce"]
+material = SubResource("StandardMaterial3D_resmp")
+size = Vector3(1, 1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y8fns"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kyrtd"]
+material = SubResource("StandardMaterial3D_y8fns")
+size = Vector3(0.1, 0.1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qb17w"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_iginu"]
+material = SubResource("StandardMaterial3D_qb17w")
+size = Vector3(0.1, 0.5, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7kwel"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p5r43"]
+material = SubResource("StandardMaterial3D_7kwel")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="Animation" id="Animation_n3ovx"]
+resource_name = "EnemyIdleAnimation"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemyNPC/VisionRayCast/HandsNode")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array()
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -2, 0, 0, 1, 1, -2, 0, 0)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 2, 0, 0, 1, 1, 2, 0, 0)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D2")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_pyv64"]
+resource_name = "EnemyKillAnimation"
+length = 0.5
+step = 0.05
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemyNPC/VisionRayCast/HandsNode")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.5, 0, 0.5, 1, 0, 0.5, -2)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -2, 0, 0, 0.5, 1, -1, 0, 0)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 2, 0, 0, 0.5, 1, 1, 0, 0)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, -0.353554, -0.612373, 0.353553, 0.612372)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D2")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.5, 1, -0.353554, 0.612373, -0.353554, 0.612372)
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EnemyNPC")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_y88um"]
+resource_name = "EnemySoundConstant"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_play_enemy_sound_constant"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0i5wj"]
+_data = {
+"EnemyIdleAnimation": SubResource("Animation_n3ovx"),
+"EnemyKillAnimation": SubResource("Animation_pyv64"),
+"EnemySoundConstant": SubResource("Animation_y88um")
+}
+
+[node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
+script = ExtResource("1_8qltm")
+
+[node name="EnemyNPC" type="Node3D" parent="."]
+script = ExtResource("1_tmms6")
+
+[node name="VisionArea" type="Area3D" parent="EnemyNPC"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyNPC/VisionArea"]
+transform = Transform3D(1000, 0, 0, 0, -4.37114e-05, -1000, 0, 1000, -4.37114e-05, 0, 0, 0)
+shape = SubResource("BoxShape3D_mo70g")
+
+[node name="VisionTimer" type="Timer" parent="EnemyNPC"]
+wait_time = 0.25
+autostart = true
+
+[node name="VisionRayCast" type="RayCast3D" parent="EnemyNPC"]
+target_position = Vector3(0, 0, -10000)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast"]
+transform = Transform3D(-4.37114e-06, -100, -4.37114e-06, 0, -4.37114e-06, 100, -100, 4.37114e-06, 1.91069e-13, 0, 0, 0)
+visible = false
+mesh = SubResource("SphereMesh_2nejy")
+skeleton = NodePath("../..")
+
+[node name="HandsNode" type="Node3D" parent="EnemyNPC/VisionRayCast"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+mesh = SubResource("BoxMesh_iwsce")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, -0.15, -0.225)
+mesh = SubResource("BoxMesh_kyrtd")
+
+[node name="Node3D" type="Node3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+mesh = SubResource("BoxMesh_iginu")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D/Node3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.2, -1.74578e-08)
+mesh = SubResource("BoxMesh_p5r43")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D/Node3D/MeshInstance3D/MeshInstance3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("BoxMesh_iginu")
+skeleton = NodePath("../../../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.2, 0)
+mesh = SubResource("BoxMesh_iginu")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D/Node3D/MeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -2.38419e-07, 0.2, -1.74578e-08)
+mesh = SubResource("BoxMesh_p5r43")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D/Node3D/MeshInstance3D2/MeshInstance3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("BoxMesh_iginu")
+skeleton = NodePath("../../../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.2, 0)
+mesh = SubResource("BoxMesh_iginu")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D/Node3D/MeshInstance3D3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.19209e-07, 0.2, -1.74578e-08)
+mesh = SubResource("BoxMesh_p5r43")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D/Node3D/MeshInstance3D3/MeshInstance3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("BoxMesh_iginu")
+skeleton = NodePath("../../../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0)
+light_color = Color(0.411765, 0, 0, 1)
+light_energy = 1.5
+light_indirect_energy = 1.131
+light_volumetric_fog_energy = 2.293
+light_size = 1.0
+light_specular = 16.0
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 25.0
+omni_range = 4.537
+omni_attenuation = 0.0883879
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+mesh = SubResource("BoxMesh_iwsce")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, -0.15, -0.225)
+mesh = SubResource("BoxMesh_kyrtd")
+
+[node name="Node3D" type="Node3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D2/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+mesh = SubResource("BoxMesh_iginu")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D2/Node3D/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.2, -1.74578e-08)
+mesh = SubResource("BoxMesh_p5r43")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D2/Node3D/MeshInstance3D/MeshInstance3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("BoxMesh_iginu")
+skeleton = NodePath("../../../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D2/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.2, 0)
+mesh = SubResource("BoxMesh_iginu")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D2/Node3D/MeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -2.38419e-07, 0.2, -1.74578e-08)
+mesh = SubResource("BoxMesh_p5r43")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D2/Node3D/MeshInstance3D2/MeshInstance3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("BoxMesh_iginu")
+skeleton = NodePath("../../../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D2/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.2, 0)
+mesh = SubResource("BoxMesh_iginu")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D2/Node3D/MeshInstance3D3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -1.19209e-07, 0.2, -1.74578e-08)
+mesh = SubResource("BoxMesh_p5r43")
+skeleton = NodePath("../../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D2/Node3D/MeshInstance3D3/MeshInstance3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("BoxMesh_iginu")
+skeleton = NodePath("../../../..")
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="EnemyNPC/VisionRayCast/HandsNode/MeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, -0.0500002, 0, 0)
+light_color = Color(0.411765, 0, 0, 1)
+light_energy = 1.5
+light_indirect_energy = 1.131
+light_volumetric_fog_energy = 2.293
+light_size = 1.0
+light_specular = 16.0
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 25.0
+omni_range = 4.537
+omni_attenuation = 0.0883879
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="EnemyNPC"]
+target_desired_distance = 7.5
+path_max_distance = 5.01
+radius = 0.01
+
+[node name="EnemyAnimations" type="AnimationPlayer" parent="EnemyNPC"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_0i5wj")
+}
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="EnemyConstantSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_qxgc5")
+volume_db = 80.0
+unit_size = 1.0
+max_distance = 200.0
+doppler_tracking = 2
+
+[connection signal="timeout" from="EnemyNPC/VisionTimer" to="EnemyNPC" method="_on_vision_timer_timeout"]
+[connection signal="target_reached" from="EnemyNPC/NavigationAgent3D" to="EnemyNPC" method="_on_navigation_agent_3d_target_reached"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

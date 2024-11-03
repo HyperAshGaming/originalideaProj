@@ -11,7 +11,7 @@ var player_target = false
 var target_reached = false
 @onready var enemyanims = $EnemyAnimations
 
-func _process(delta):
+func _process(_delta):
 	if target_reached == false:
 		enemyanims.play("EnemyIdleAnimation")
 		#print("IDLE")

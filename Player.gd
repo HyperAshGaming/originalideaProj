@@ -80,4 +80,5 @@ func _headbob(time) -> Vector3:
 
 func _play_footstep_audio():
 	footstep_audio.pitch_scale = randf_range(0.8,1.2)
-	footstep_audio.play()
+	if GlobalVarsScript.levers_down != 5:
+		footstep_audio.play()

@@ -5,10 +5,10 @@ extends CharacterBody3D
 @onready var enemy_anims = $EnemyNPC/EnemyAnimations
 @onready var timer_audio_constant = $Timer
 
-func _ready():
-	axis_lock_linear_x = true
-	axis_lock_linear_y = true
-	axis_lock_linear_z = true
+# func _ready():
+# 	axis_lock_linear_x = true
+# 	axis_lock_linear_y = true
+# 	axis_lock_linear_z = true
 	
 var SPEED = 20.0
 var NewTargetAllowed = true

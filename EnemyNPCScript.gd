@@ -2,8 +2,8 @@ extends Node3D
 
 
 var last_pos_location
-var h = 6
-var positions_list = [Vector3(0,h,-340),Vector3(-340,h,-68),Vector3(0,6,68),Vector3(-84,h,272),Vector3(305,h,73)]
+var h = 12
+var positions_list = [Vector3(0,h,0),Vector3(0,h,-340),Vector3(-340,h,-68),Vector3(0,h,68),Vector3(-84,h,272),Vector3(305,h,73)]
 var new_random_target = true
 var cooldown_wander = 0
 var pos_location = positions_list.pick_random()
